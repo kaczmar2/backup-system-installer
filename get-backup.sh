@@ -203,6 +203,6 @@ main() {
     echo "The setup wizard will guide you through configuration in 5-10 minutes."
 }
 
-if [[ "${BASH_SOURCE[0]:-}" == "${0}" ]]; then
+if [[ "${BASH_SOURCE[0]:-$0}" == "${0}" ]]; then
     main "$@"
 fi

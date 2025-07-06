@@ -123,6 +123,8 @@ main() {
         echo "Using existing repository URL: $BACKUP_REPO_URL"
         repo_url="$BACKUP_REPO_URL"
     else
+        echo "Enter the repository URL without the https:// prefix"
+        echo "Example: github.com/user/repo.git"
         echo -n "Backup repository URL: "
         read -r repo_url </dev/tty
         
@@ -130,6 +132,9 @@ main() {
             print_error "Repository URL is required"
             exit 1
         fi
+        
+        # Strip https:// if user included it
+        repo_url="${repo_url#https://}"
     fi
     
     # Get GitHub PAT

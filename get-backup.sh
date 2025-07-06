@@ -54,7 +54,7 @@ prompt_with_default() {
         echo -n "$prompt: "
     fi
     
-    read -r value
+    read -r value </dev/tty
     if [[ -z "$value" ]]; then
         value="$default"
     fi
@@ -124,7 +124,7 @@ main() {
         repo_url="$BACKUP_REPO_URL"
     else
         echo -n "Backup repository URL: "
-        read -r repo_url
+        read -r repo_url </dev/tty
         
         if [[ -z "$repo_url" ]]; then
             print_error "Repository URL is required"
@@ -143,7 +143,7 @@ main() {
         echo "Required scope: 'repo' (for private repository access)"
         echo
         echo -n "Enter your GitHub PAT: "
-        read -rs pat_token
+        read -rs pat_token </dev/tty
         echo
         
         if [[ -z "$pat_token" ]]; then
@@ -159,7 +159,7 @@ main() {
     if [[ -d "$HOME/backup-jobs" ]]; then
         echo -e "${YELLOW}Warning: ~/backup-jobs directory already exists.${NC}"
         echo -n "Remove existing directory and continue? (y/N): "
-        read -r response
+        read -r response </dev/tty
         if [[ ! "$response" =~ ^[Yy]$ ]]; then
             echo "Download cancelled."
             exit 0
